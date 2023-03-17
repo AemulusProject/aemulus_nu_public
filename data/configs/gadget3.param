@@ -1,0 +1,134 @@
+%  Relevant files
+InitCondFile   {ICsFile}
+ICFormat       3
+
+OutputDir                   {OutputDir}
+SnapshotFileBase            {SnapBaseName}
+SnapFormat                  3
+NumFilesWrittenInParallel   {Nio}
+
+EnergyFile        energy.txt
+InfoFile          info.txt
+TimingsFile       timings.txt
+CpuFile           cpu.txt
+RestartFile       restart
+
+TimeLimitCPU           {TimeLimit}
+CpuTimeBetRestartFile  7200
+ResubmitOn             0
+ResubmitCommand        resub.sh
+
+% Code options
+
+ComovingIntegrationOn 1
+
+NumFilesPerSnapshot       {Cores}
+
+CoolingOn       0
+StarformationOn 0
+ 
+%  Caracteristics of run
+
+TimeBegin           {aini}
+TimeMax             1.0
+
+Omega0          {OmegaM}
+OmegaLambda     {OmegaL}
+OmegaBaryon     {OmegaB}
+HubbleParam     {h}
+% DarkEnergyParam {w0}
+
+BoxSize             {BoxL}
+
+OutputListFilename  ./savelist.txt
+OutputListOn        0
+% SaveListFilename    ./savelist.txt
+% SaveListOn          1
+TimeBetSnapshot     {TimeBetSnapshot}
+TimeOfFirstSnapshot {TimeOfFirstSnapshot}
+TimeBetStatistics   0.1
+
+
+PeriodicBoundariesOn   1
+
+% Softening lengths
+
+MinGasHsmlFractional     0.1  % minimum gas smoothing in terms of the gravitational softening length
+
+
+SofteningGas       {Soft}
+SofteningHalo      {Soft}   
+SofteningDisk      {Soft}
+SofteningBulge     {Soft}
+SofteningStars     {Soft}
+SofteningBndry     {Soft}
+
+SofteningGasMaxPhys       {Soft}
+SofteningHaloMaxPhys      {Soft}
+SofteningDiskMaxPhys      {Soft}
+SofteningBulgeMaxPhys     {Soft}
+SofteningStarsMaxPhys     {Soft}
+SofteningBndryMaxPhys     {Soft}
+
+% Accuracy of time integration
+
+ErrTolIntAccuracy       0.01
+MaxRMSDisplacementFac   0.2
+MaxSizeTimestep         0.01
+MinSizeTimestep         0.0
+ErrTolTheta             0.5
+TypeOfOpeningCriterion  1
+ErrTolForceAcc          0.002
+TypeOfTimestepCriterion 0 
+
+TreeDomainUpdateFrequency    0.01
+
+
+%  Parameters of SPH
+
+DesNumNgb           33
+MaxNumNgbDeviation  2
+
+ArtBulkViscConst    1.0
+
+InitGasTemp         273.0  % initial gas temperature in K, only used if not given in IC file
+
+MinGasTemp          100.0    
+CourantFac          0.15
+
+
+% Further code parameters
+MaxMemSize             {MaxMem}
+PartAllocFactor        2.2
+BufferSize             200
+
+% System of units
+
+UnitLength_in_cm         3.085678e24        ;  1.0 mpc
+UnitMass_in_g            1.989e43           ;  1.0e10 solar masses
+UnitVelocity_in_cm_per_s 1e5                ;  1 km/sec
+GravityConstantInternal  0
+
+
+%In case the H(z) function from CAMB is used
+DarkEnergyFile            {CAMBHz}
+
+
+%Parameters for the Yacine-Bird method
+%OmegaBaryonCAMB    0.049
+%KspaceTransferFunction    ./CAMB_TABLES/ics_transfer_99.dat
+%TimeTransfer       0.01
+%InputSpectrum_UnitLength_in_cm  3.085678e24
+%MNue               0.3
+%MNum               0.3
+%MNut               0.3
+
+
+
+
+
+
+
+
+
+
